@@ -1,22 +1,29 @@
 package edu.austral.dissis.starship;
 
+import edu.austral.dissis.starship.base.collision.CollisionEngine;
 import edu.austral.dissis.starship.base.framework.GameFramework;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.framework.WindowSettings;
 import edu.austral.dissis.starship.base.vector.Vector2;
 import processing.core.PConstants;
 import processing.core.PGraphics;
-import processing.core.PImage;
 import processing.event.KeyEvent;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import static edu.austral.dissis.starship.base.vector.Vector2.vector;
+import static java.util.Arrays.asList;
 
 public class CustomGameFramework implements GameFramework {
 
     private StarshipDrawer starshipDrawer;
-    private Starship starship = new Starship(vector(200, 200), vector(0, -1));
+    private Starship starship1 = new Starship(vector(200, 200), vector(0, -1));
+    private Starship starship2 = new Starship(vector(400, 400), vector(0, -1));
+
+    private final CollisionEngine engine = new CollisionEngine();
 
     @Override
     public void setup(WindowSettings windowsSettings, ImageLoader imageLoader) {
@@ -28,23 +35,41 @@ public class CustomGameFramework implements GameFramework {
 
     @Override
     public void draw(PGraphics graphics, float timeSinceLastDraw, Set<Integer> keySet) {
+        updateStarship(keySet);
+        drawStarships(graphics);
+        checkCollisions();
+    }
+
+    private void checkCollisions() {
+        final List<SquareCollisionable> collisionables = asList(
+                starshipDrawer.getCollisionable(starship1),
+                starshipDrawer.getCollisionable(starship2)
+        );
+
+        engine.checkCollisions(collisionables);
+    }
+
+    private void drawStarships(PGraphics graphics) {
+        starshipDrawer.draw(graphics, starship1);
+        starshipDrawer.draw(graphics, starship2);
+    }
+
+    private void updateStarship(Set<Integer> keySet) {
         if (keySet.contains(PConstants.UP)) {
-            starship = starship.moveForward(2);
+            starship1 = starship1.moveForward(2);
         }
 
         if (keySet.contains(PConstants.DOWN)) {
-            starship = starship.moveBackwards(2);
+            starship1 = starship1.moveBackwards(2);
         }
 
         if (keySet.contains(PConstants.LEFT)) {
-            starship = starship.rotate(-1 * PConstants.PI / 60);
+            starship1 = starship1.rotate(-1 * PConstants.PI / 60);
         }
 
         if (keySet.contains(PConstants.RIGHT)) {
-            starship = starship.rotate(PConstants.PI / 60);
+            starship1 = starship1.rotate(PConstants.PI / 60);
         }
-
-        starshipDrawer.draw(graphics, starship);
     }
 
     @Override
