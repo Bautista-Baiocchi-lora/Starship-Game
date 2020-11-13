@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.keys;
 
 import processing.event.KeyEvent;
 
@@ -24,5 +24,14 @@ public class GameKeyEvent {
 
     public boolean isPressed() {
         return pressed;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof GameKeyEvent){
+            GameKeyEvent e = (GameKeyEvent) obj;
+            return this.playerId == e.getPlayerId() && this.keyEvent.getKeyCode() == e.getKeyEvent().getKeyCode() && this.pressed == e.isPressed();
+        }
+        return false;
     }
 }

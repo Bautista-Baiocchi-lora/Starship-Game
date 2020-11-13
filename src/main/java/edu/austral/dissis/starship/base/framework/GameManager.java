@@ -9,7 +9,6 @@ import java.util.Set;
 
 public class GameManager extends PApplet {
     private final GameFramework gameFramework = new GameController();
-    private final Set<Integer> keySet = new HashSet<>();
 
     public void settings() {
         gameFramework.setup(new WindowSettings(this), new ImageLoader(this));
@@ -19,18 +18,14 @@ public class GameManager extends PApplet {
         clear();
 
         final float timeSinceLastFrame = (frameRate / 60) * 100;
-        gameFramework.draw(g, timeSinceLastFrame, keySet);
+        gameFramework.draw(g, timeSinceLastFrame, null);
     }
 
     public void keyPressed(KeyEvent event) {
-        keySet.add(event.getKeyCode());
-
         gameFramework.keyPressed(event);
     }
 
     public void keyReleased(KeyEvent event) {
-        keySet.remove(event.getKeyCode());
-
         gameFramework.keyReleased(event);
     }
 }
