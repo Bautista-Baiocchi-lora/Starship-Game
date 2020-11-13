@@ -1,5 +1,4 @@
-package edu.austral.dissis.starship;
-
+package edu.austral.dissis.starship.models;
 import edu.austral.dissis.starship.base.collision.Collisionable;
 import edu.austral.dissis.starship.base.vector.Vector2;
 
@@ -8,7 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
-public class SquareCollisionable implements Collisionable<SquareCollisionable> {
+public class SquareCollisionable implements Collisionable {
     private final float size;
     private final float angle;
     private final Vector2 position;
@@ -35,7 +34,7 @@ public class SquareCollisionable implements Collisionable<SquareCollisionable> {
     }
 
     @Override
-    public void collisionedWith(SquareCollisionable collisionable) {
+    public void collisionedWith(Collisionable collisionable) {
         System.out.println("Collisioned with " + collisionable);
     }
 }
