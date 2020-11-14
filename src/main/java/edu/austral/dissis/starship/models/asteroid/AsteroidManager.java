@@ -1,12 +1,12 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.models.asteroid;
 
+import edu.austral.dissis.starship.game.GameState;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.asteroid.Asteroid;
 
 import java.util.Random;
 
 import static edu.austral.dissis.starship.base.vector.Vector2.vector;
-import static edu.austral.dissis.starship.GameSettings.*;
+import static edu.austral.dissis.starship.game.GameSettings.*;
 import static edu.austral.dissis.starship.models.asteroid.AsteroidFactory.*;
 
 public class AsteroidManager {
@@ -15,7 +15,7 @@ public class AsteroidManager {
     private long asteroidSpawnRate = 2000;
 
     private final Vector2 randomPosition() {
-        return vector(30 + new Random().nextInt(WINDOW_WIDTH - 30), 0);
+        return vector(60 + new Random().nextInt(WINDOW_WIDTH - 60), 0);
     }
 
     public void spawnAsteroid(GameState state) {

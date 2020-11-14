@@ -2,15 +2,23 @@ package edu.austral.dissis.starship.models;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
 
+import java.util.Random;
+
 public class GameObject {
 
+    protected final int id;
     protected final Vector2 position, direction;
     protected final float speed;
 
-    public GameObject(Vector2 position, Vector2 direction, float speed) {
+    protected GameObject(int id, Vector2 position, Vector2 direction, float speed) {
+        this.id = id;
         this.position = position;
         this.direction = direction.asUnitary();
         this.speed = speed;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public float getSpeed() {

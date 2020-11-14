@@ -1,11 +1,8 @@
 package edu.austral.dissis.starship.base.framework;
 
-import edu.austral.dissis.starship.GameController;
+import edu.austral.dissis.starship.game.GameController;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class GameManager extends PApplet {
     private final GameFramework gameFramework = new GameController();

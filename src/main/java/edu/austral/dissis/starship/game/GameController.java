@@ -1,5 +1,6 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.game;
 
+import edu.austral.dissis.starship.conn.LANGameConnection;
 import edu.austral.dissis.starship.base.framework.GameFramework;
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.framework.WindowSettings;
@@ -12,20 +13,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static edu.austral.dissis.starship.GameSettings.*;
+import static edu.austral.dissis.starship.game.GameSettings.*;
 
 public class GameController implements GameFramework {
 
     private ImageLoader imageLoader;
     private List<GameLobby> lobbies = new ArrayList<>();
-    private List<GameConnection> connections = new ArrayList<>();
+    private List<LANGameConnection> connections = new ArrayList<>();
     private Player player;
-    private GameConnection currentConnection;
+    private LANGameConnection currentConnection;
 
 
-    private GameConnection joinGame(String lobbyId, Player player) {
+    private LANGameConnection joinGame(String lobbyId, Player player) {
         GameLobby lobby = this.lobbies.stream().filter(lob -> lob.getId() == lobbyId).findFirst().get();
-        GameConnection connection = new GameConnection(lobby, player);
+        LANGameConnection connection = new LANGameConnection(lobby, player);
         if (connection.open()) {
             return connection;
         }

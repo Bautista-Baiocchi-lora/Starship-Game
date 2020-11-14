@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.models;
 
 public interface Movable<T> {
 

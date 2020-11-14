@@ -1,10 +1,7 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.game;
 
-import com.sun.jmx.remote.internal.ArrayQueue;
 import edu.austral.dissis.starship.drawer.Drawer;
 import edu.austral.dissis.starship.keys.GameKeyEvent;
-import edu.austral.dissis.starship.keys.mappings.MoveSpaceship;
-import edu.austral.dissis.starship.keys.mappings.ShootGun;
 import processing.event.KeyEvent;
 
 import java.util.*;
@@ -20,8 +17,6 @@ public class GameLobby {
         this.name = name;
         this.id = id;
         this.engine = new GameEngine();
-        this.engine.addKeyEventMapping(new MoveSpaceship());
-        this.engine.addKeyEventMapping(new ShootGun());
         this.gameState = new GameState();
     }
 

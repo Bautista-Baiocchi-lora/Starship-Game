@@ -1,6 +1,6 @@
 package edu.austral.dissis.starship.keys;
 
-import edu.austral.dissis.starship.GameState;
+import edu.austral.dissis.starship.game.GameState;
 import processing.event.KeyEvent;
 
 import java.util.Arrays;

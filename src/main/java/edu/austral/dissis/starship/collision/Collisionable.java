@@ -1,9 +1,12 @@
 package edu.austral.dissis.starship.collision;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
-public interface Collisionable<T extends Collisionable<T>> {
-    Shape getShape();
+public interface Collisionable {
 
-    void collisionedWith(T collisionable);
+    Rectangle2D getHitbox();
+
+    boolean collided(Collisionable collider);
+
 }

@@ -1,24 +1,29 @@
 package edu.austral.dissis.starship.models.spaceship;
 
-import edu.austral.dissis.starship.Movable;
-import edu.austral.dissis.starship.collision.Collision;
+import edu.austral.dissis.starship.collision.Collisionable;
+import edu.austral.dissis.starship.models.Health;
+import edu.austral.dissis.starship.models.Movable;
 import edu.austral.dissis.starship.drawer.Drawable;
 import edu.austral.dissis.starship.drawer.Drawer;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.asteroid.Asteroid;
 import edu.austral.dissis.starship.models.GameObject;
-import edu.austral.dissis.starship.models.Gun;
 
+import java.awt.geom.Rectangle2D;
 import java.util.List;
+import java.util.Random;
 
-public class Spaceship extends GameObject implements Drawable, Movable<Spaceship>, Collision<Spaceship> {
+public class Spaceship extends GameObject implements Drawable, Movable<Spaceship>, Collisionable, Health<Spaceship> {
 
     private final String imageName;
     private final int maxHealth, currentHealth;
     private final Gun gun;
 
     public Spaceship(String imageName, Vector2 position, Vector2 direction, float speed, int maxHealth, int currentHealth, ShootStrategy shootStrategy) {
-        super(position, direction, speed);
+        this(new Random().nextInt(), imageName, position, direction, speed, maxHealth, currentHealth, shootStrategy);
+    }
+
+    private Spaceship(int id, String imageName, Vector2 position, Vector2 direction, float speed, int maxHealth, int currentHealth, ShootStrategy shootStrategy) {
+        super(id, position, direction, speed);
         this.imageName = imageName;
         this.maxHealth = maxHealth;
         this.currentHealth = currentHealth;
@@ -45,32 +50,47 @@ public class Spaceship extends GameObject implements Drawable, Movable<Spaceship
     @Override
     public Spaceship moveForward() {
         Vector2 position = this.position.add(direction.multiply(speed));
-        return new Spaceship(imageName, position, direction, speed, maxHealth, currentHealth, gun.getShootStrategy());
+        return new Spaceship(id, imageName, position, direction, speed, maxHealth, currentHealth, gun.getShootStrategy());
     }
 
     @Override
     public Spaceship moveBackward() {
         Vector2 position = this.position.subtract(direction.multiply(speed));
-        return new Spaceship(imageName, position, direction, speed, maxHealth, currentHealth, gun.getShootStrategy());
+        return new Spaceship(id, imageName, position, direction, speed, maxHealth, currentHealth, gun.getShootStrategy());
     }
 
     @Override
     public Spaceship turn(float angle) {
-        return new Spaceship(imageName, position, this.direction.rotate(angle), speed, maxHealth, currentHealth, gun.getShootStrategy());
+        return new Spaceship(id, imageName, position, this.direction.rotate(angle), speed, maxHealth, currentHealth, gun.getShootStrategy());
     }
 
     @Override
-    public Spaceship collidedWith(Asteroid asteroid) {
-        return this;
+    public Rectangle2D getHitbox() {
+        return new Rectangle2D.Float(position.getX(), position.getY(), 50, 120);
     }
 
     @Override
-    public Spaceship collidedWith(Spaceship ship) {
-        return this;
+    public boolean collided(Collisionable collider) {
+        return this.getHitbox().intersects(collider.getHitbox()) && this.isAlive();
     }
 
     @Override
-    public Spaceship collidedWith(Projectile projectile) {
-        return this;
+    public Spaceship takeDamage(int amount) {
+        return new Spaceship(id, imageName, position, direction, speed, maxHealth, currentHealth - amount, gun.getShootStrategy());
+    }
+
+    @Override
+    public Spaceship heal(int amount) {
+        return new Spaceship(id, imageName, position, direction, speed, maxHealth, currentHealth + amount, gun.getShootStrategy());
+    }
+
+    @Override
+    public Spaceship kill() {
+        return new Spaceship(id, imageName, position, direction, speed, maxHealth, 0, gun.getShootStrategy());
+    }
+
+    @Override
+    public boolean isAlive() {
+        return currentHealth > 0;
     }
 }
