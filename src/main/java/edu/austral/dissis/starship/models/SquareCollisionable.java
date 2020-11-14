@@ -1,5 +1,5 @@
 package edu.austral.dissis.starship.models;
-import edu.austral.dissis.starship.base.collision.Collisionable;
+import edu.austral.dissis.starship.collision.Collisionable;
 import edu.austral.dissis.starship.base.vector.Vector2;
 
 import java.awt.*;

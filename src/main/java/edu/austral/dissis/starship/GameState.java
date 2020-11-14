@@ -1,8 +1,10 @@
 package edu.austral.dissis.starship;
 
-import edu.austral.dissis.starship.models.Asteroid;
-import edu.austral.dissis.starship.models.Projectile;
-import edu.austral.dissis.starship.models.Spaceship;
+import edu.austral.dissis.starship.models.asteroid.Asteroid;
+import edu.austral.dissis.starship.models.spaceship.Projectile;
+import edu.austral.dissis.starship.models.spaceship.ShootLazer;
+import edu.austral.dissis.starship.models.spaceship.Spaceship;
+import edu.austral.dissis.starship.models.spaceship.SpaceshipFactory;
 
 import java.util.*;
 
@@ -17,39 +19,40 @@ public class GameState {
 
     public void addPlayer(Player player) {
         this.players.add(player);
-        this.playerRegistry.put(player.getId(), new Spaceship(vector(200, 200), vector(0, -1)));
+        Spaceship ship = SpaceshipFactory.makeBig(vector(200, 200), vector(0, -1), new ShootLazer());
+        this.playerRegistry.put(player.getId(), ship);
     }
 
-    public List<Asteroid> getAsteroids(){
+    public List<Asteroid> getAsteroids() {
         return this.asteroids;
     }
 
-    public void addAsteroid(Asteroid asteroid){
+    public void addAsteroid(Asteroid asteroid) {
         this.asteroids.add(asteroid);
     }
 
-    public void replaceAsteroids(List<Asteroid> asteroids){
+    public void replaceAsteroids(List<Asteroid> asteroids) {
         this.asteroids.clear();
         this.asteroids.addAll(asteroids);
     }
 
-    public Spaceship getSpaceship(int playerId){
+    public Spaceship getSpaceship(int playerId) {
         return this.playerRegistry.get(playerId);
     }
 
-    public void replaceSpaceship(int playerId, Spaceship spaceship){
+    public void replaceSpaceship(int playerId, Spaceship spaceship) {
         this.playerRegistry.replace(playerId, spaceship);
     }
 
-    public void addProjectiles(List<Projectile> projectiles){
+    public void addProjectiles(List<Projectile> projectiles) {
         this.projectiles.addAll(projectiles);
     }
 
-    public List<Projectile> getProjectiles(){
+    public List<Projectile> getProjectiles() {
         return this.projectiles;
     }
 
-    public void replaceProjectiles(List<Projectile> projectiles){
+    public void replaceProjectiles(List<Projectile> projectiles) {
         this.projectiles.clear();
         this.projectiles.addAll(projectiles);
     }

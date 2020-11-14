@@ -2,11 +2,9 @@ package edu.austral.dissis.starship.drawer;
 
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.Asteroid;
-import edu.austral.dissis.starship.models.GameObject;
-import edu.austral.dissis.starship.models.Projectile;
-import edu.austral.dissis.starship.models.Spaceship;
-import processing.core.PConstants;
+import edu.austral.dissis.starship.models.asteroid.Asteroid;
+import edu.austral.dissis.starship.models.spaceship.Projectile;
+import edu.austral.dissis.starship.models.spaceship.Spaceship;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
@@ -41,7 +39,7 @@ public class JavaDrawer implements Drawer {
         graphics.translate(position.getX(), position.getY());
         graphics.rotate(angle);
 
-        PImage image = loader.load(ship.imageName);
+        PImage image = loader.load(ship.getImageName());
         graphics.image(image, getImageWidthCenter(image), getImageHeightCenter(image));
 
         graphics.popMatrix();
@@ -57,8 +55,8 @@ public class JavaDrawer implements Drawer {
         graphics.translate(position.getX(), position.getY());
         graphics.rotate(angle);
 
-        graphics.fill(255, 0 ,0);
-        graphics.rect(0, 0, 5,20);
+        PImage image = loader.load(projectile.getImageName());
+        graphics.image(image, getImageWidthCenter(image), getImageHeightCenter(image));
 
         graphics.popMatrix();
     }
@@ -73,8 +71,8 @@ public class JavaDrawer implements Drawer {
         graphics.translate(position.getX(), position.getY());
         graphics.rotate(angle);
 
-        graphics.fill(255, 0 ,0);
-        graphics.rect(0, 0, 30,30);
+        PImage image = loader.load(asteroid.getImageName());
+        graphics.image(image, getImageWidthCenter(image), getImageHeightCenter(image));
 
         graphics.popMatrix();
     }

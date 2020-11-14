@@ -1,6 +1,8 @@
 package edu.austral.dissis.starship.models;
 
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.models.spaceship.Projectile;
+import edu.austral.dissis.starship.models.spaceship.ShootStrategy;
 
 import java.util.List;
 
@@ -10,6 +12,10 @@ public class Gun {
 
     public Gun(ShootStrategy shootStrategy) {
         this.shootStrategy = shootStrategy;
+    }
+
+    public ShootStrategy getShootStrategy() {
+        return shootStrategy;
     }
 
     public void load(ShootStrategy strategy) {

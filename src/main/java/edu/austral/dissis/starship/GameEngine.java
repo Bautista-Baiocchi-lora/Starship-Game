@@ -1,11 +1,9 @@
 package edu.austral.dissis.starship;
 
-import edu.austral.dissis.starship.base.vector.Vector2;
 import edu.austral.dissis.starship.keys.GameKeyEvent;
 import edu.austral.dissis.starship.keys.KeyEventMapping;
-import edu.austral.dissis.starship.models.Asteroid;
-import edu.austral.dissis.starship.models.GameObject;
-import edu.austral.dissis.starship.models.Projectile;
+import edu.austral.dissis.starship.models.asteroid.Asteroid;
+import edu.austral.dissis.starship.models.spaceship.Projectile;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,16 +28,17 @@ public class GameEngine {
     }
 
     private void translateProjectiles(GameState state) {
-        List<Projectile> translated = state.getProjectiles().stream().map(p -> p.moveForward(0)).collect(Collectors.toList());
+        List<Projectile> translated = state.getProjectiles().stream().map(p -> p.moveForward()).collect(Collectors.toList());
         state.replaceProjectiles(translated);
     }
 
     private void translateAsteroids(GameState state){
-        List<Asteroid> translated = state.getAsteroids().stream().map(a -> a.moveForward(0)).collect(Collectors.toList());
+        List<Asteroid> translated = state.getAsteroids().stream().map(a -> a.moveForward()).collect(Collectors.toList());
         state.replaceAsteroids(translated);
     }
 
     public void nextFrame(Set<GameKeyEvent> events, GameState state) {
+        //check collisions
         processKeyEvent(events, state);
         translateProjectiles(state);
         translateAsteroids(state);

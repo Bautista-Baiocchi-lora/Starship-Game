@@ -2,9 +2,9 @@ package edu.austral.dissis.starship;
 
 public interface Movable<T> {
 
-    T moveForward(float speed);
+    T moveForward();
 
-    T moveBackward(float speed);
+    T moveBackward();
 
     T turn(float angle);
 }

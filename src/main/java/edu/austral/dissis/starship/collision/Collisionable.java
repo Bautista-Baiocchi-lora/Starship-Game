@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.base.collision;
+package edu.austral.dissis.starship.collision;
 
 import java.awt.*;
 

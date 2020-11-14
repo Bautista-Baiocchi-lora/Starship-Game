@@ -50,9 +50,9 @@ public class GameLobby {
     public void draw(Drawer drawer) {
         engine.nextFrame(keyEvents, gameState);
 
-        gameState.getSpaceships().forEach(drawer::draw);
         gameState.getProjectiles().forEach(drawer::draw);
         gameState.getAsteroids().forEach(drawer::draw);
+        gameState.getSpaceships().forEach(drawer::draw);
     }
 
     public void notifyKeyPressed(Player player, KeyEvent event) {

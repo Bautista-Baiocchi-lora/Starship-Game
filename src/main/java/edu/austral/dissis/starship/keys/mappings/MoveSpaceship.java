@@ -3,7 +3,7 @@ package edu.austral.dissis.starship.keys.mappings;
 import edu.austral.dissis.starship.GameState;
 import edu.austral.dissis.starship.keys.GameKeyEvent;
 import edu.austral.dissis.starship.keys.KeyEventMapping;
-import edu.austral.dissis.starship.models.Spaceship;
+import edu.austral.dissis.starship.models.spaceship.Spaceship;
 import processing.core.PConstants;
 
 import java.awt.event.KeyEvent;
@@ -29,7 +29,7 @@ public class MoveSpaceship implements KeyEventMapping {
                 break;
             case PConstants.UP:
             case KeyEvent.VK_W:
-                state.replaceSpaceship(event.getPlayerId(), ship.moveForward(2));
+                state.replaceSpaceship(event.getPlayerId(), ship.moveForward());
                 break;
             case PConstants.RIGHT:
             case KeyEvent.VK_D:
@@ -37,7 +37,7 @@ public class MoveSpaceship implements KeyEventMapping {
                 break;
             case PConstants.DOWN:
             case KeyEvent.VK_S:
-                state.replaceSpaceship(event.getPlayerId(), ship.moveBackward(2));
+                state.replaceSpaceship(event.getPlayerId(), ship.moveBackward());
                 break;
         }
     }
