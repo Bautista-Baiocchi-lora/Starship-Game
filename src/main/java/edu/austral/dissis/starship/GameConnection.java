@@ -1,6 +1,7 @@
 package edu.austral.dissis.starship;
 
 
+import edu.austral.dissis.starship.drawer.Drawer;
 import processing.event.KeyEvent;
 
 public class GameConnection {
@@ -13,11 +14,15 @@ public class GameConnection {
         this.player = player;
     }
 
-    public void notifyKeyPressed(KeyEvent event){
+    public void draw(Drawer drawer){
+        this.lobby.draw(drawer);
+    }
+
+    public void sendKeyPressed(KeyEvent event){
         this.lobby.notifyKeyPressed(player, event);
     }
 
-    public void notifyKeyReleased(KeyEvent event){
+    public void sendKeyReleased(KeyEvent event){
         this.lobby.notifyKeyReleased(player, event);
     }
 

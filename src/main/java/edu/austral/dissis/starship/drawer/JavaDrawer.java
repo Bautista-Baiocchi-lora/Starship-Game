@@ -36,10 +36,7 @@ public class JavaDrawer implements Drawer {
 
         PImage image = loader.load(ship.imageName);
         graphics.image(image, getImageWidthCenter(image), getImageHeightCenter(image));
-        graphics.fill(255, 0, 0);
 
         graphics.popMatrix();
-
-        graphics.fill(0, 255, 0);
     }
 }

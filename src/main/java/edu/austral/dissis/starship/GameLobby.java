@@ -10,14 +10,24 @@ import java.util.*;
 
 public class GameLobby {
 
-    private final ArrayList<GameKeyEvent> keyEvents = new ArrayList<>();
+    private final String id, name;
     private GameState gameState;
-    private final GameEngine gameEngine;
+    private GameEngine engine;
 
-    public GameLobby() {
-        this.gameEngine = new GameEngine();
-        this.gameEngine.addKeyEventMapping(new MoveSpaceship());
+    public GameLobby(String id, String name) {
+        this.name = name;
+        this.id = id;
+        this.engine = new GameEngine();
+        this.engine.addKeyEventMapping(new MoveSpaceship());
         this.gameState = new GameState();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean isOpen() {
@@ -35,18 +45,15 @@ public class GameLobby {
     }
 
     public void draw(Drawer drawer) {
-        this.gameState = gameEngine.nextGameState(keyEvents, gameState);
         gameState.getSpaceships().stream().forEach(drawer::draw);
     }
 
     public void notifyKeyPressed(Player player, KeyEvent event) {
-        System.out.println("pressed: "+keyEvents.size());
-        this.keyEvents.add(new GameKeyEvent(player.getId(), event, true));
+        engine.processKeyEvent(new GameKeyEvent(player.getId(), event, true), gameState);
     }
 
     public void notifyKeyReleased(Player player, KeyEvent event) {
-        System.out.println("released: "+keyEvents.size());
-        this.keyEvents.add(new GameKeyEvent(player.getId(), event, false));
+        engine.processKeyEvent(new GameKeyEvent(player.getId(), event, false), gameState);
     }
 
 }

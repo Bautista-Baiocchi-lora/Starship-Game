@@ -8,16 +8,21 @@ import edu.austral.dissis.starship.drawer.JavaDrawer;
 import processing.core.PGraphics;
 import processing.event.KeyEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class GameController implements GameFramework {
 
     private ImageLoader imageLoader;
-    private GameLobby lobby;
+    private List<GameLobby> lobbies = new ArrayList<>();
+    private List<GameConnection> connections = new ArrayList<>();
     private Player player;
-    private GameConnection connection;
+    private GameConnection currentConnection;
 
-    private GameConnection joinGame(GameLobby lobby, Player player) {
+
+    private GameConnection joinGame(String lobbyId, Player player) {
+        GameLobby lobby = this.lobbies.stream().filter(lob -> lob.getId() == lobbyId).findFirst().get();
         GameConnection connection = new GameConnection(lobby, player);
         if (connection.open()) {
             return connection;
@@ -32,27 +37,33 @@ public class GameController implements GameFramework {
 
         this.imageLoader = imageLoader;
         this.player = new Player(1, "Bauti");
-        this.lobby = new GameLobby();
-        this.connection = joinGame(lobby, player);
+
+        this.lobbies.add(new GameLobby("1", "ARG Local"));
+        this.lobbies.add(new GameLobby("2", "ARG Local"));
+
+        this.currentConnection = joinGame("1", player);
     }
 
     @Override
     public void draw(PGraphics graphics, float timeSinceLastDraw, Set<Integer> keySet) {
         Drawer drawer = new JavaDrawer(imageLoader, graphics);
-        this.lobby.draw(drawer);
+
+        if (currentConnection != null) {
+            currentConnection.draw(drawer);
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent event) {
-        if (connection != null) {
-            connection.notifyKeyPressed(event);
+        if (currentConnection != null) {
+            currentConnection.sendKeyPressed(event);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent event) {
-        if (connection != null) {
-            connection.notifyKeyReleased(event);
+        if (currentConnection != null) {
+            currentConnection.sendKeyReleased(event);
         }
     }
 }

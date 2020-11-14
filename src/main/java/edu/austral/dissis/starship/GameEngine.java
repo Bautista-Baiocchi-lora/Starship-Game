@@ -17,15 +17,15 @@ public class GameEngine {
         this.keyMappings.add(mapping);
     }
 
-    private void applyKeyMappings(ArrayList<GameKeyEvent> keys, GameState state) {
-        for (int i = 0; i < keys.size(); i++) {
-            GameKeyEvent e = keys.remove(i);
-            this.keyMappings.stream().filter(mapping -> mapping.activate(e)).forEachOrdered(mapping -> mapping.perform(e, state));
+    public void processKeyEvent(GameKeyEvent e, GameState state){
+        for(KeyEventMapping mapping: keyMappings){
+            if(mapping.activate(e)){
+                mapping.perform(e, state);
+            }
         }
     }
 
     public GameState nextGameState(ArrayList<GameKeyEvent> keys, GameState state) {
-        applyKeyMappings(keys, state);
         return state;
     }
 }
