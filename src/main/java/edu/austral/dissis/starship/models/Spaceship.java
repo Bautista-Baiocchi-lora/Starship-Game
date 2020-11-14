@@ -5,13 +5,20 @@ import edu.austral.dissis.starship.drawer.Drawable;
 import edu.austral.dissis.starship.drawer.Drawer;
 import edu.austral.dissis.starship.base.vector.Vector2;
 
+import java.util.List;
+
 public class Spaceship extends GameObject implements Drawable, Movable<Spaceship> {
 
     public final String imageName = "spaceship.png";
+    private final Gun gun;
 
     public Spaceship(Vector2 position, Vector2 direction) {
         super(position, direction);
+        gun = new Gun(new ShootMissle());
+    }
 
+    public List<Projectile> fireGun(int shooterId){
+        return this.gun.fire(shooterId, getPosition(), getDirection());
     }
 
     @Override

@@ -20,7 +20,7 @@ public class MoveSpaceship implements KeyEventMapping {
     }
 
     @Override
-    public GameState perform(GameKeyEvent event, GameState state) {
+    public void perform(GameKeyEvent event, GameState state) {
         Spaceship ship = state.getSpaceship(event.getPlayerId());
         switch (event.getKeyEvent().getKeyCode()) {
             case PConstants.LEFT:
@@ -40,7 +40,6 @@ public class MoveSpaceship implements KeyEventMapping {
                 state.replaceSpaceship(event.getPlayerId(), ship.moveBackward(2));
                 break;
         }
-        return null;
     }
 
 }

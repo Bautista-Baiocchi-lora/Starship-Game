@@ -1,5 +1,6 @@
 package edu.austral.dissis.starship;
 
+import edu.austral.dissis.starship.models.Projectile;
 import edu.austral.dissis.starship.models.Spaceship;
 
 import java.util.*;
@@ -10,6 +11,7 @@ public class GameState {
 
     private final List<Player> players = new ArrayList<>();
     private final HashMap<Integer, Spaceship> playerRegistry = new HashMap<>();
+    private final List<Projectile> projectiles = new ArrayList<>();
 
     public void addPlayer(Player player) {
         this.players.add(player);
@@ -22,6 +24,19 @@ public class GameState {
 
     public void replaceSpaceship(int playerId, Spaceship spaceship){
         this.playerRegistry.replace(playerId, spaceship);
+    }
+
+    public void addProjectiles(List<Projectile> projectiles){
+        this.projectiles.addAll(projectiles);
+    }
+
+    public List<Projectile> getProjectiles(){
+        return this.projectiles;
+    }
+
+    public void replaceProjectiles(List<Projectile> projectiles){
+        this.projectiles.clear();
+        this.projectiles.addAll(projectiles);
     }
 
     public Collection<Spaceship> getSpaceships() {

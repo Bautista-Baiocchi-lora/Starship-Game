@@ -9,7 +9,7 @@ public interface KeyEventMapping {
 
     boolean activate(GameKeyEvent event);
 
-    GameState perform(GameKeyEvent event, GameState state);
+    void perform(GameKeyEvent event, GameState state);
 
     static boolean compareKeys(KeyEvent event, int...keyCodes){
         return Arrays.stream(keyCodes).anyMatch(i -> i == event.getKeyCode());
