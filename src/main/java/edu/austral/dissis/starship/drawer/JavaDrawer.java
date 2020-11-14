@@ -2,6 +2,7 @@ package edu.austral.dissis.starship.drawer;
 
 import edu.austral.dissis.starship.base.framework.ImageLoader;
 import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.models.Asteroid;
 import edu.austral.dissis.starship.models.GameObject;
 import edu.austral.dissis.starship.models.Projectile;
 import edu.austral.dissis.starship.models.Spaceship;
@@ -57,7 +58,23 @@ public class JavaDrawer implements Drawer {
         graphics.rotate(angle);
 
         graphics.fill(255, 0 ,0);
-        graphics.rect(10, 10, 10,10);
+        graphics.rect(0, 0, 5,20);
+
+        graphics.popMatrix();
+    }
+
+    @Override
+    public void draw(Asteroid asteroid) {
+        final Vector2 position = asteroid.getPosition();
+        final float angle = calculateRotation(asteroid);
+
+        graphics.pushMatrix();
+
+        graphics.translate(position.getX(), position.getY());
+        graphics.rotate(angle);
+
+        graphics.fill(255, 0 ,0);
+        graphics.rect(0, 0, 30,30);
 
         graphics.popMatrix();
     }

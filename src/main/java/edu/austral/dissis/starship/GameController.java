@@ -33,7 +33,7 @@ public class GameController implements GameFramework {
 
     @Override
     public void setup(WindowSettings windowsSettings, ImageLoader imageLoader) {
-        windowsSettings.setSize(500, 500);
+        windowsSettings.setSize(900, 500);
 
         this.imageLoader = imageLoader;
         this.player = new Player(1, "Bauti");
