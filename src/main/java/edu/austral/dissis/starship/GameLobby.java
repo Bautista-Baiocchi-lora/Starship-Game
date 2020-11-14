@@ -11,6 +11,7 @@ import java.util.*;
 public class GameLobby {
 
     private final String id, name;
+    private final Set<GameKeyEvent> keyEvents = new HashSet<>();
     private GameState gameState;
     private GameEngine engine;
 
@@ -45,15 +46,16 @@ public class GameLobby {
     }
 
     public void draw(Drawer drawer) {
+        engine.processKeyEvent(keyEvents, gameState);
         gameState.getSpaceships().stream().forEach(drawer::draw);
     }
 
     public void notifyKeyPressed(Player player, KeyEvent event) {
-        engine.processKeyEvent(new GameKeyEvent(player.getId(), event, true), gameState);
+        this.keyEvents.add(new GameKeyEvent(player.getId(), event));
     }
 
     public void notifyKeyReleased(Player player, KeyEvent event) {
-        engine.processKeyEvent(new GameKeyEvent(player.getId(), event, false), gameState);
+        this.keyEvents.remove(new GameKeyEvent(player.getId(), event));
     }
 
 }

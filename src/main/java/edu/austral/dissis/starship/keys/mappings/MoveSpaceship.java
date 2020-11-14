@@ -16,7 +16,7 @@ public class MoveSpaceship implements KeyEventMapping {
 
     @Override
     public boolean activate(GameKeyEvent event) {
-        return event.isPressed() && compareKeys(event.getKeyEvent(), KEYS);
+        return compareKeys(event.getKeyEvent(), KEYS);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class MoveSpaceship implements KeyEventMapping {
                 break;
             case PConstants.RIGHT:
             case KeyEvent.VK_D:
-               state.replaceSpaceship(event.getPlayerId(), ship.turn(PConstants.PI / 60));
+                state.replaceSpaceship(event.getPlayerId(), ship.turn(PConstants.PI / 60));
                 break;
             case PConstants.DOWN:
             case KeyEvent.VK_S:

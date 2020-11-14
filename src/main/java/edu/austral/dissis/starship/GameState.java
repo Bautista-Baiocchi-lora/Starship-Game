@@ -13,7 +13,7 @@ public class GameState {
 
     public void addPlayer(Player player) {
         this.players.add(player);
-        this.playerRegistry.put(player.getId(), new Spaceship(vector(200, 200), vector(1, 0)));
+        this.playerRegistry.put(player.getId(), new Spaceship(vector(200, 200), vector(0, -1)));
     }
 
     public Spaceship getSpaceship(int playerId){

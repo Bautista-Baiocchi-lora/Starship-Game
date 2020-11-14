@@ -5,9 +5,7 @@ import edu.austral.dissis.starship.keys.GameKeyEvent;
 import edu.austral.dissis.starship.keys.KeyEventMapping;
 import edu.austral.dissis.starship.models.GameObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GameEngine {
 
@@ -17,10 +15,12 @@ public class GameEngine {
         this.keyMappings.add(mapping);
     }
 
-    public void processKeyEvent(GameKeyEvent e, GameState state){
+    public void processKeyEvent(Set<GameKeyEvent> events, GameState state){
         for(KeyEventMapping mapping: keyMappings){
-            if(mapping.activate(e)){
-                mapping.perform(e, state);
+            for(GameKeyEvent e: events){
+                if(mapping.activate(e)){
+                    mapping.perform(e, state);
+                }
             }
         }
     }
