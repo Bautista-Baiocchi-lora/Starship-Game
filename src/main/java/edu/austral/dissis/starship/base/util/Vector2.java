@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship.base.vector;
+package edu.austral.dissis.starship.base.util;
 
 import static java.lang.Math.*;
 

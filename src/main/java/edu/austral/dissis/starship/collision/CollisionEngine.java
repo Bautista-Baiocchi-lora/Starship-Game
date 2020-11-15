@@ -1,7 +1,7 @@
 package edu.austral.dissis.starship.collision;
 
 import edu.austral.dissis.starship.game.GameState;
-import edu.austral.dissis.starship.Tuple;
+import edu.austral.dissis.starship.base.util.Tuple;
 import edu.austral.dissis.starship.models.asteroid.Asteroid;
 import edu.austral.dissis.starship.models.spaceship.Projectile;
 import edu.austral.dissis.starship.models.spaceship.Spaceship;
@@ -38,7 +38,7 @@ public class CollisionEngine {
     private <T, K> List<Tuple<T, K>> dotProduct(Collection<T> A, Collection<K> B) {
         List<Tuple<T, K>> product = new ArrayList<>();
         for (T a : A) {
-            B.forEach(b -> product.add(new Tuple<T, K>(a, b)));
+            B.forEach(b -> product.add(new Tuple(a, b)));
         }
         return product;
     }

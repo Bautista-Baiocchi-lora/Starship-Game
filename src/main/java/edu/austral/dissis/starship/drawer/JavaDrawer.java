@@ -1,15 +1,12 @@
 package edu.austral.dissis.starship.drawer;
 
 import edu.austral.dissis.starship.base.framework.ImageLoader;
-import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.collision.Collisionable;
+import edu.austral.dissis.starship.base.util.Vector2;
 import edu.austral.dissis.starship.models.asteroid.Asteroid;
 import edu.austral.dissis.starship.models.spaceship.Projectile;
 import edu.austral.dissis.starship.models.spaceship.Spaceship;
 import processing.core.PGraphics;
 import processing.core.PImage;
-
-import java.awt.geom.Rectangle2D;
 
 import static edu.austral.dissis.starship.drawer.Drawer.calculateRotation;
 
@@ -31,8 +28,6 @@ public class JavaDrawer implements Drawer {
         return image.pixelWidth / -2F;
     }
 
-
-
     @Override
     public void draw(Spaceship ship) {
         final Vector2 position = ship.getPosition();
@@ -43,8 +38,8 @@ public class JavaDrawer implements Drawer {
         graphics.translate(position.getX(), position.getY());
         graphics.rotate(angle);
 
-        graphics.fill(255, 0, 0);
-        graphics.rect((float) ship.getHitbox().getX(), (float) ship.getHitbox().getY(), (float) ship.getHitbox().getWidth(), (float) ship.getHitbox().getHeight());
+        //graphics.fill(255, 0, 0);
+        //graphics.rect((float) ship.getHitbox().getX(), (float) ship.getHitbox().getY(), (float) ship.getHitbox().getWidth(), (float) ship.getHitbox().getHeight());
 
         PImage image = loader.load(ship.getImageName());
         graphics.image(image, getImageWidthCenter(image), getImageHeightCenter(image));

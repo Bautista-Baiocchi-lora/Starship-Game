@@ -1,8 +1,6 @@
 package edu.austral.dissis.starship.models.spaceship;
 
-import edu.austral.dissis.starship.base.vector.Vector2;
-import edu.austral.dissis.starship.models.spaceship.Projectile;
-import edu.austral.dissis.starship.models.spaceship.ShootStrategy;
+import edu.austral.dissis.starship.base.util.Vector2;
 
 import java.util.List;
 

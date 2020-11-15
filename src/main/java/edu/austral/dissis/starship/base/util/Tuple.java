@@ -1,4 +1,4 @@
-package edu.austral.dissis.starship;
+package edu.austral.dissis.starship.base.util;
 
 /**
  * @see http://www.javatuples.org/ for a more thorough approach

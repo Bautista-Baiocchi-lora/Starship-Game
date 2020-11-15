@@ -1,11 +1,11 @@
 package edu.austral.dissis.starship.models.asteroid;
 
 import edu.austral.dissis.starship.game.GameState;
-import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.base.util.Vector2;
 
 import java.util.Random;
 
-import static edu.austral.dissis.starship.base.vector.Vector2.vector;
+import static edu.austral.dissis.starship.base.util.Vector2.vector;
 import static edu.austral.dissis.starship.game.GameSettings.*;
 import static edu.austral.dissis.starship.models.asteroid.AsteroidFactory.*;
 

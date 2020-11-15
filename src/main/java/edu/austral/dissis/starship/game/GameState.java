@@ -8,7 +8,7 @@ import edu.austral.dissis.starship.models.spaceship.SpaceshipFactory;
 
 import java.util.*;
 
-import static edu.austral.dissis.starship.base.vector.Vector2.vector;
+import static edu.austral.dissis.starship.base.util.Vector2.vector;
 
 public class GameState {
 

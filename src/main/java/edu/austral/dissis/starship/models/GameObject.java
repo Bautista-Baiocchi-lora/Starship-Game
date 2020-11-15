@@ -1,8 +1,6 @@
 package edu.austral.dissis.starship.models;
 
-import edu.austral.dissis.starship.base.vector.Vector2;
-
-import java.util.Random;
+import edu.austral.dissis.starship.base.util.Vector2;
 
 public class GameObject {
 

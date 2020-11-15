@@ -5,7 +5,7 @@ import edu.austral.dissis.starship.models.Health;
 import edu.austral.dissis.starship.models.Movable;
 import edu.austral.dissis.starship.drawer.Drawable;
 import edu.austral.dissis.starship.drawer.Drawer;
-import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.base.util.Vector2;
 import edu.austral.dissis.starship.models.GameObject;
 
 import java.awt.geom.Rectangle2D;

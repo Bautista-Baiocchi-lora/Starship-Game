@@ -1,6 +1,6 @@
 package edu.austral.dissis.starship.models.spaceship;
 
-import edu.austral.dissis.starship.base.vector.Vector2;
+import edu.austral.dissis.starship.base.util.Vector2;
 
 public class SpaceshipFactory {
 
