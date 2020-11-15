@@ -25,6 +25,7 @@ public class CollisionEngine {
 
         collide(state.getAsteroids(), state.getProjectiles(), ASTEROID_PROJECTILE_COLLIDER).forEach(tuple -> {
             state.replaceAsteroids(tuple.a);
+            state.incrementScore(tuple.b.getShooterId(), tuple.b.getDamage());
             state.removeProjectile(tuple.b);
         });
     }

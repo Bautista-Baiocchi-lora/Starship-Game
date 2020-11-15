@@ -17,12 +17,22 @@ public class GameState {
     private final HashMap<Integer, Spaceship> spaceships = new HashMap<>();
     private final HashMap<Integer, Projectile> projectiles = new HashMap<>();
     private final HashMap<Integer, Asteroid> asteroids = new HashMap<>();
+    private final HashMap<Integer, Integer> scoreboard = new HashMap<>();
 
     public void addPlayer(Player player) {
         this.players.put(player.getId(), player);
         Spaceship ship = SpaceshipFactory.makeBig(vector(0, 0), vector(0, -1), new ShootLazer());
+        this.scoreboard.put(player.getId(), 0);
         this.spaceships.put(ship.getId(), ship);
         this.playerSpaceshipRelation.put(player.getId(), ship.getId());
+    }
+
+    public void incrementScore(int playerId, int points) {
+        this.scoreboard.replace(playerId, this.scoreboard.get(playerId) + points);
+    }
+
+    public void resetScoreboard(){
+        this.scoreboard.keySet().forEach(key -> this.scoreboard.replace(key, 0));
     }
 
     public Collection<Asteroid> getAsteroids() {
@@ -73,6 +83,7 @@ public class GameState {
 
     public void removePlayer(Player player) {
         this.players.remove(player.getId());
+        this.scoreboard.remove(player.getId());
         this.spaceships.remove(this.playerSpaceshipRelation.get(player.getId()));
     }
 }
