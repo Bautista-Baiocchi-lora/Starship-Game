@@ -1,7 +1,7 @@
 package edu.austral.dissis.starship.game;
 
-import edu.austral.dissis.starship.collision.AsteroidProjectileCollider;
-import edu.austral.dissis.starship.collision.AsteroidSpaceshipCollider;
+import edu.austral.dissis.starship.collision.colliders.AsteroidProjectileCollider;
+import edu.austral.dissis.starship.collision.colliders.AsteroidSpaceshipCollider;
 import edu.austral.dissis.starship.collision.CollisionEngine;
 import edu.austral.dissis.starship.keys.GameKeyEvent;
 import edu.austral.dissis.starship.keys.KeyEventEngine;
