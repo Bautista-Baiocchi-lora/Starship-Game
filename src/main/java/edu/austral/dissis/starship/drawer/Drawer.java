@@ -1,7 +1,7 @@
 package edu.austral.dissis.starship.drawer;
 
-import edu.austral.dissis.starship.models.asteroid.Asteroid;
 import edu.austral.dissis.starship.models.GameObject;
+import edu.austral.dissis.starship.models.asteroid.Asteroid;
 import edu.austral.dissis.starship.models.spaceship.Projectile;
 import edu.austral.dissis.starship.models.spaceship.Spaceship;
 import processing.core.PConstants;

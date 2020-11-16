@@ -1,6 +1,5 @@
 package edu.austral.dissis.starship.collision;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public interface Collisionable {

@@ -4,7 +4,8 @@ import edu.austral.dissis.starship.drawer.Drawer;
 import edu.austral.dissis.starship.keys.GameKeyEvent;
 import processing.event.KeyEvent;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameLobby {
 

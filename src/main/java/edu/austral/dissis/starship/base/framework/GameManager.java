@@ -1,7 +1,6 @@
 package edu.austral.dissis.starship.base.framework;
 
 import edu.austral.dissis.starship.conn.GameConnection;
-import edu.austral.dissis.starship.conn.LANGameConnection;
 import edu.austral.dissis.starship.drawer.Drawer;
 import edu.austral.dissis.starship.drawer.JavaDrawer;
 import edu.austral.dissis.starship.game.GameServer;
